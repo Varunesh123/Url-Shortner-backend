@@ -7,16 +7,19 @@ const UrlSchema = new mongoose.Schema({
     },
     shortUrl: { 
         type: String, 
-        required: true, 
-        unique: true 
+        required: true,
     },
     user: { 
-        type: mongoose.Schema.Types.ObjectId, 
+        type: String, 
         ref: "User", 
         required: true 
     },
     topic: { 
         type: String 
+    },
+    clicks: {
+        type: Number,
+        default: 0
     },
     createdAt: { 
         type: Date, 

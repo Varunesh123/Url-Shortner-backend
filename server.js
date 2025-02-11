@@ -11,6 +11,7 @@ import urlRoutes from "./routes/urlRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
 import swaggerDocs from "./docs/swagger.js";
 import "./middleware/passportAuth.js";
+import morgan from "morgan";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 app.use(passport.initialize());
+app.use(morgan('dev'))
 app.use(limiter);
 
 // Database connection
@@ -28,7 +30,7 @@ connectDB();
 
 // Routes
 app.use("/auth", authRoutes);
-app.use("/api/shorten", urlRoutes);
+app.use("/api/urls", urlRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
 // Swagger Documentation
